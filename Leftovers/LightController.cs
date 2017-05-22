@@ -21,12 +21,9 @@ namespace Leftovers
             InitPin(Rooms.Stadium, 6);
             InitPin(Rooms.FiveKitchen, 7);
             InitPin(Rooms.Beacon, 9);
+            InitPin(Rooms.Status, 21);
 
-            Task.Delay(1000).Wait();
-            foreach (var gpioPin in _pins.Values)
-            {
-                gpioPin.Write(GpioPinValue.High);
-            }
+            _pins[Rooms.Status].Write(GpioPinValue.Low);
         }
 
         public void Blink(Rooms room)
@@ -44,7 +41,7 @@ namespace Leftovers
         private void InitPin(Rooms room, int pinNum)
         {
             var pin = _gpioController.OpenPin(pinNum);
-            pin.Write(GpioPinValue.Low);
+            pin.Write(GpioPinValue.High);
             pin.SetDriveMode(GpioPinDriveMode.Output);
             _pins.Add(room, pin);
         }

@@ -8,21 +8,15 @@ namespace Leftovers
     public sealed partial class MainPage : Page
     {
         private readonly LightController _lights;
+        private ExchangeService _exchangeService;
+        private StreamingSubscriptionConnection _streamingSubscriptionConnection;
 
         public MainPage()
         {
             InitializeComponent();
             _lights = new LightController();
-//            Task.Run(async () =>
-//            {
-//                await WatchEmail();
-//            }).GetAwaiter().GetResult();
-
             WatchEmail();
         }
-
-        private ExchangeService _exchangeService;
-        private StreamingSubscriptionConnection _streamingSubscriptionConnection;
 
         private async void WatchEmail()
         {
