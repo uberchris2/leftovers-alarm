@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Exchange.WebServices.Data;
 
@@ -45,10 +46,10 @@ namespace Leftovers
             {
                 var item = (ItemEvent)notificationEvent;
                 var message = await EmailMessage.Bind(_exchangeService, item.ItemId);
-
-                if (MessageHelper.IsLeftovers(message))
+                var text = (message.Subject + Regex.Replace(message.Body.Text, "<.*?>", string.Empty)).ToLower();
+                if (MessageHelper.IsLeftovers(text))
                 {
-                    var room = MessageHelper.PickRoom(message);
+                    var room = MessageHelper.PickRoom(text);
                     _lights.Blink(room);
                 }
             }

@@ -6,7 +6,7 @@ namespace Leftovers
 {
     public class LightController
     {
-        private int blinkTime = 3000;
+        private int blinkTime = 10000;
         private readonly Dictionary<Rooms, GpioPin> _pins = new Dictionary<Rooms, GpioPin>();
         private GpioController _gpioController;
 
