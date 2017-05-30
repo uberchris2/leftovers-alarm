@@ -22,8 +22,6 @@ namespace Leftovers
             InitPin(Rooms.FiveKitchen, 7);
             InitPin(Rooms.Beacon, 9);
             InitPin(Rooms.Status, 21);
-
-            _pins[Rooms.Status].Write(GpioPinValue.Low);
         }
 
         public void Blink(Rooms room)
